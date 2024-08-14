@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "Looking for the database ..."
-while ! pg_isready -q -d $STORAGE_URI
+while ! redis-cli -u $STORAGE_URI PING | grep -q PONG; 
 do
   echo "Waiting for database."
   sleep 2
